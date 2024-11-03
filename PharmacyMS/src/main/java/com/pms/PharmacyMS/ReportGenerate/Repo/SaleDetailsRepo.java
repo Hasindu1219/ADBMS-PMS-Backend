@@ -17,7 +17,8 @@ import java.util.Objects;
 @Repository
 public interface SaleDetailsRepo extends JpaRepository<SaleDetails, Integer> {
     @Query(value = "CALL sp_dailySales(:selected_date)", nativeQuery = true)
-    List<Object[]> getDailySales(@Param("selected_date") Date selectedDate);
+    List<Object[]> getDailySales(@Param("selected_date") String selectedDate);
+
 
     @Query(value = "CALL sp_monthlySalesReport(:year, :month)", nativeQuery = true)
     List<Object[]> getMonthlySalesReport(@Param("year") Year year, @Param("month") Month month);
