@@ -24,4 +24,9 @@ public class InventoryController {
     public List<InventoryViewDto> getInventoryView(){
         return inventoryService.getAllInventoryItems();
     }
+
+    @PutMapping("/updateinventory/{id}")
+    public InventoryDto updateInventory(@PathVariable int id,@RequestBody InventoryDto inventoryDto) {
+        return inventoryService.updateInventory(id,inventoryDto);
+    }
 }

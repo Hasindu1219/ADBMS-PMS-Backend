@@ -13,11 +13,28 @@ import java.util.List;
 @Repository
 public interface InventoryRepo extends JpaRepository<Inventory, Integer> {
 
-    @Query("SELECT new com.pms.PharmacyMS.dto.InventoryViewDto ( i.quantity, i.receivedDate, i.price) FROM Inventory i")
+    // View the Inventory Data
+//    @Query("SELECT new com.pms.PharmacyMS.dto.InventoryViewDto(" +
+//            "s.supplierName, s.saleRepName, s.phoneNumber, i.quantity, i.receivedDate, i.price) " +
+//            "FROM Inventory i JOIN Supplier s ON i.supplierId = s.supplierId " +
+//            "ORDER BY s.supplierId ASC")
+   // List<InventoryViewDto> findAllInventoryView();
+// InventoryRepo.java
+//    @Query("SELECT new com.pms.PharmacyMS.dto.InventoryViewDto(" +
+//            "i.inventoryId, i.medicineId, i.supplierId, s.supplierName, s.saleRepName, s.phoneNumber, " +
+//            "i.quantity, i.receivedDate, i.price) " +
+//            "FROM Inventory i JOIN Supplier s ON i.supplierId = s.supplierId " +
+//            "ORDER BY s.supplierId ASC")
+//    List<InventoryViewDto> findAllInventoryView();
+
+    // InventoryRepo.java
+    @Query("SELECT new com.pms.PharmacyMS.dto.InventoryViewDto(" +
+            "i.inventoryId, i.medicineId, i.supplierId, s.supplierName, s.saleRepName, s.phoneNumber, " +
+            "i.quantity, i.receivedDate, i.price) " +
+            "FROM Inventory i JOIN Supplier s ON i.supplierId = s.supplierId " +
+            "ORDER BY s.supplierId ASC")
     List<InventoryViewDto> findAllInventoryView();
 
 
-    @Modifying
-    @Query("UPDATE Stock s SET s.stockQuantity = s.stockQuantity + :quantity WHERE s.medicineId = :medicineId")
-    void updateStockQuantity(int quantity,int medicineId);
+
 }

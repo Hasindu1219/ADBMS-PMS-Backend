@@ -12,12 +12,15 @@ import java.sql.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 public class InventoryViewDto {
-
-
+    private int inventoryId;
+    private int medicineId;
+    private int supplierId;  
+    private String supplierName;
+    private String salesRepName;
+    private String phoneNumber;
     private Integer quantity;
     private Date receivedDate;
     private BigDecimal price;
-
 
 
 }
