@@ -13,7 +13,6 @@ import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.Year;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -31,11 +30,28 @@ public class UserService {
     @Autowired
     private ModelMapper modelMapper;
 
+
     public ResponseDTO UserAuthentication(UserDTO userDTO) {
         UserEntity user = userRepo.findByEmail(userDTO.getEmail());
 
-        UserDetails userDetails = new UserDetails();
+        if (user == null) {
+            // User not found, set response for no user found
+            responseDTO.setCode(VarList.RIP_NO_DATA_FOUND);
+            responseDTO.setContent(userDTO);
+            responseDTO.setMessage("Invalid User Name");
+            return responseDTO; // Early return here
+        }
 
+        // Now that we know user is not null, proceed with password check
+        if (!user.getPassword().equals(userDTO.getPassword())) {
+            responseDTO.setCode(VarList.RIP_FAIL);
+            responseDTO.setContent(userDTO);
+            responseDTO.setMessage("Invalid Password");
+            return responseDTO; // Early return here
+        }
+
+        // Password matches, set user details
+        UserDetails userDetails = new UserDetails();
         userDetails.setName(user.getName());
         userDetails.setEmail(user.getEmail());
         userDetails.setSalary(user.getSalary());
@@ -44,26 +60,46 @@ public class UserService {
         userDetails.setBranch_id(user.getBranch_id());
         userDetails.setRole_id(user.getRole_id());
 
-        if (user == null){
-            responseDTO.setCode(VarList.RIP_NO_DATA_FOUND);
-            responseDTO.setContent(userDTO);
-            responseDTO.setMessage("Invalid User Name");
-
-        }else if(!user.getPassword().equals(userDTO.getPassword()) )
-        {
-            responseDTO.setCode(VarList.RIP_FAIL);
-            responseDTO.setContent(userDTO);
-            responseDTO.setMessage("Invalid Password");
-        }else if(user.getPassword().equalsIgnoreCase(userDTO.getPassword())){
-
-            responseDTO.setCode(VarList.RIP_SUCCESS);
-            responseDTO.setContent(userDetails);
-            responseDTO.setMessage("Successfull");
-        }
+        responseDTO.setCode(VarList.RIP_SUCCESS);
+        responseDTO.setContent(userDetails);
+        responseDTO.setMessage("Successful");
 
         return responseDTO;
-
     }
+
+//    public ResponseDTO UserAuthentication(UserDTO userDTO) {
+//        UserEntity user = userRepo.findByEmail(userDTO.getEmail());
+//
+//        UserDetails userDetails = new UserDetails();
+//
+//        userDetails.setName(user.getName());
+//        userDetails.setEmail(user.getEmail());
+//        userDetails.setSalary(user.getSalary());
+//        userDetails.setContact_no(user.getContact_no());
+//        userDetails.setJoined_date(user.getJoined_date());
+//        userDetails.setBranch_id(user.getBranch_id());
+//        userDetails.setRole_id(user.getRole_id());
+//
+//        if (user == null){
+//            responseDTO.setCode(VarList.RIP_NO_DATA_FOUND);
+//            responseDTO.setContent(userDTO);
+//            responseDTO.setMessage("Invalid User Name");
+//
+//        }else if(!user.getPassword().equals(userDTO.getPassword()) )
+//        {
+//            responseDTO.setCode(VarList.RIP_FAIL);
+//            responseDTO.setContent(userDTO);
+//            responseDTO.setMessage("Invalid Password");
+//        }else if(user.getPassword().equalsIgnoreCase(userDTO.getPassword())){
+//
+//            responseDTO.setCode(VarList.RIP_SUCCESS);
+//            responseDTO.setContent(userDetails);
+//            responseDTO.setMessage("Successfull");
+//        }
+//
+//        return responseDTO;
+//
+//    }
 
 
     public ResponseDTO getAllUsers(){

@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import java.time.Year;
+//import java.time.Year;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -18,7 +18,7 @@ public class UserEntity {
     private String name;
     private String contact_no;
     private float salary;
-    private Year joined_date;
+    private String joined_date;
     private String email;
     private String password;
     private int branch_id;
