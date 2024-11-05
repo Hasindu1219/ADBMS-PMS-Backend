@@ -1,18 +1,21 @@
 package com.pms.PharmacyMS.medicine.service;
 
+
 import com.pms.PharmacyMS.medicine.dto.MedicineDTO;
-import com.pms.PharmacyMS.medicine.dto.ResponseDTO;
-import com.pms.PharmacyMS.medicine.Util.VarList;
 import com.pms.PharmacyMS.medicine.entity.MedicineEntity;
 import com.pms.PharmacyMS.medicine.repository.MedicineRepo;
+import com.pms.PharmacyMS.suppliers.dto.SupplierDto;
+import com.pms.PharmacyMS.suppliers.entity.Supplier;
+import com.pms.PharmacyMS.suppliers.repository.SupplierRepo;
 import jakarta.transaction.Transactional;
 import org.modelmapper.ModelMapper;
-import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @Transactional
@@ -20,27 +23,21 @@ public class MedicineService {
 
     @Autowired
     private MedicineRepo medicineRepo;
-
-    @Autowired
-    private ResponseDTO responseDTO;
-
     @Autowired
     private ModelMapper modelMapper;
 
 
-    public ResponseDTO getAllMedicines(){
-        List<MedicineEntity> medicineEntities = medicineRepo.findAll();
-        if (medicineEntities.isEmpty()){
-            responseDTO.setCode(VarList.RIP_NO_DATA_FOUND);
-            responseDTO.setContent(null);
-            responseDTO.setMessage("Medicines not found!");
-        }else {
-            responseDTO.setCode(VarList.RIP_SUCCESS);
-            responseDTO.setContent(modelMapper.map(medicineEntities, new TypeToken<ArrayList<MedicineDTO>>(){}.getType()));
-            responseDTO.setMessage("Medicines found!");
-        }
-        return responseDTO;
+    // get all medicines
+    public List<MedicineDTO> getAllMedicines() {
+        return medicineRepo.findAll().stream()
+                .map(medicine -> modelMapper.map(medicine, MedicineDTO.class))
+                .collect(Collectors.toList());
     }
 
+    // add medicine
+    public MedicineDTO addMedicine(MedicineDTO medicineDTO) {
+        medicineRepo.save(modelMapper.map( medicineDTO, MedicineEntity.class));
+        return  medicineDTO;
+    }
 
 }

@@ -1,34 +1,30 @@
 package com.pms.PharmacyMS.medicine.controller;
 
 
-import com.pms.PharmacyMS.medicine.dto.ResponseDTO;
-import com.pms.PharmacyMS.medicine.Util.VarList;
+
+import com.pms.PharmacyMS.medicine.dto.MedicineDTO;
 import com.pms.PharmacyMS.medicine.service.MedicineService;
+import com.pms.PharmacyMS.suppliers.dto.SupplierDto;
+import com.pms.PharmacyMS.suppliers.service.SupplierService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @CrossOrigin(origins = "*", allowCredentials = "false")
 @RestController
 @RequestMapping("/api/medicine")
 public class MedicineController {
-
     @Autowired
     private MedicineService medicineService;
+    @GetMapping("/getmedicines")
+    public List<MedicineDTO> getAllMedicines() {
+        return medicineService.getAllMedicines();
+    }
 
-
-    @GetMapping("getallmedicines")
-    public ResponseEntity<ResponseDTO> getAllMedicines(){
-        ResponseDTO allMedicines = medicineService.getAllMedicines();
-        if (allMedicines.getCode().equals(VarList.RIP_SUCCESS)){
-            return new ResponseEntity<>(allMedicines, HttpStatus.OK);
-        }else {
-            return new ResponseEntity<>(allMedicines,HttpStatus.NOT_FOUND);
-        }
+    @PostMapping("/addmedicine")
+    public MedicineDTO addMedicine(@RequestBody MedicineDTO medicineDTO) {
+        return  medicineService.addMedicine(medicineDTO);
     }
 
 }
