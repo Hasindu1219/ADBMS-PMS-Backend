@@ -17,7 +17,7 @@ import java.util.List;
 public class MedicineController {
     @Autowired
     private MedicineService medicineService;
-    @GetMapping("/getmedicines")
+    @GetMapping("/getallmedicines")
     public List<MedicineDTO> getAllMedicines() {
         return medicineService.getAllMedicines();
     }
