@@ -19,14 +19,14 @@ public class SaleReportService
     private SaleDetailsRepo saleDetailsRepo;
 
 
-    public List<Object[]> getMonthlySales(Month selectedMonth, Year selectedYear)
-    {
-        List<Object[]> dailySales=saleDetailsRepo.getMonthlySalesReport(selectedYear,selectedMonth);
-        return  dailySales;
+    public List<Object[]> getMonthlySales(Month selectedMonth,Year selectedYear) {
+        String yearStr = String.valueOf(selectedYear.getValue());
+        String monthStr = String.format("%02d", selectedMonth.getValue());
+        return saleDetailsRepo.getMonthlySalesReport(yearStr, monthStr);
     }
-    public List<Object[]> getDailySales(Date selectedDate) {
+    public List<Object[]> getDailySales(Date selectedDate,int branchID) {
         String formattedDate = new SimpleDateFormat("yyyy-MM-dd").format(selectedDate);
-        return saleDetailsRepo.getDailySales(formattedDate);
+        return saleDetailsRepo.getBranchDailySales(formattedDate,branchID);
     }
 
 }

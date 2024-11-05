@@ -16,11 +16,12 @@ import java.util.Objects;
 
 @Repository
 public interface SaleDetailsRepo extends JpaRepository<SaleDetails, Integer> {
-    @Query(value = "CALL sp_dailySales(:selected_date)", nativeQuery = true)
-    List<Object[]> getDailySales(@Param("selected_date") String selectedDate);
+    @Query(value = "CALL sp_BranchdailySales(:selected_date,:branchID)", nativeQuery = true)
+    List<Object[]> getBranchDailySales(@Param("selected_date") String selectedDate, @Param("branchID") int branchId);
+
 
 
     @Query(value = "CALL sp_monthlySalesReport(:year, :month)", nativeQuery = true)
-    List<Object[]> getMonthlySalesReport(@Param("year") Year year, @Param("month") Month month);
+    List<Object[]> getMonthlySalesReport(@Param("year") String year, @Param("month") String month);
 }
 
