@@ -30,9 +30,11 @@ public class Inventory {
     @Column(name="medicine_id")
     private int medicineId;
 
-
     @Column(name="supplier_id")
     private int supplierId;
+
+    @Column(name="expiry_date")
+    private Date expiryDate;
 
 
 }

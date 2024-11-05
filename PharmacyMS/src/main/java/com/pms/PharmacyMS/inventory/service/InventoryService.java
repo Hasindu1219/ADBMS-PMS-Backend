@@ -26,6 +26,7 @@ public class InventoryService {
         Inventory inventory = modelMapper.map(inventoryDto, Inventory.class);
         inventoryRepo.save(inventory);
         return  inventoryDto;
+        
     }
     // get the inventory
     public List<InventoryViewDto> getAllInventoryItems() {
@@ -43,6 +44,7 @@ public class InventoryService {
         inventory.setPrice(inventoryDto.getPrice());
         inventory.setSupplierId(inventoryDto.getSupplierId());
         inventory.setMedicineId(inventoryDto.getMedicineId());
+        inventory.setExpiryDate(inventoryDto.getExpiryDate());
 
         inventoryRepo.save(inventory);
         return inventoryDto;

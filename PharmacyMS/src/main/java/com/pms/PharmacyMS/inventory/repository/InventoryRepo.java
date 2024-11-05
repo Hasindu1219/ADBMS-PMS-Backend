@@ -29,7 +29,7 @@ public interface InventoryRepo extends JpaRepository<Inventory, Integer> {
     // InventoryRepo.java
     @Query("SELECT new com.pms.PharmacyMS.inventory.dto.InventoryViewDto(" +
             "i.inventoryId, i.medicineId, i.supplierId, s.supplierName, s.saleRepName, s.phoneNumber, " +
-            "i.quantity, i.receivedDate, i.price) " +
+            "i.quantity, i.receivedDate,i.expiryDate, i.price) " +
             "FROM Inventory i JOIN Supplier s ON i.supplierId = s.supplierId " +
             "ORDER BY s.supplierId ASC")
     List<InventoryViewDto> findAllInventoryView();
