@@ -1,9 +1,9 @@
-package com.pms.PharmacyMS.Management_Medicine.Controller;
+package com.pms.PharmacyMS.medicine.controller;
 
 
-import com.pms.PharmacyMS.Management_Medicine.DTO.ResponseDTO;
-import com.pms.PharmacyMS.Management_Medicine.Util.VarList;
-import com.pms.PharmacyMS.Management_Medicine.Service.MedicineService;
+import com.pms.PharmacyMS.medicine.dto.ResponseDTO;
+import com.pms.PharmacyMS.medicine.Util.VarList;
+import com.pms.PharmacyMS.medicine.service.MedicineService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

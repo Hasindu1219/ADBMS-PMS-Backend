@@ -1,10 +1,10 @@
-package com.pms.PharmacyMS.Management_Medicine.Service;
+package com.pms.PharmacyMS.medicine.service;
 
-import com.pms.PharmacyMS.Management_Medicine.DTO.MedicineDTO;
-import com.pms.PharmacyMS.Management_Medicine.DTO.ResponseDTO;
-import com.pms.PharmacyMS.Management_Medicine.Util.VarList;
-import com.pms.PharmacyMS.Management_Medicine.Entity.MedicineEntity;
-import com.pms.PharmacyMS.Management_Medicine.Repository.MedicineRepo;
+import com.pms.PharmacyMS.medicine.dto.MedicineDTO;
+import com.pms.PharmacyMS.medicine.dto.ResponseDTO;
+import com.pms.PharmacyMS.medicine.Util.VarList;
+import com.pms.PharmacyMS.medicine.entity.MedicineEntity;
+import com.pms.PharmacyMS.medicine.repository.MedicineRepo;
 import jakarta.transaction.Transactional;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;

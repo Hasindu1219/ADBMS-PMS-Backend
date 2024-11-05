@@ -1,21 +1,23 @@
-package com.pms.PharmacyMS.Management_Medicine.DTO;
+package com.pms.PharmacyMS.medicine.entity;
 
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 @Data
-public class MedicineDTO {
-
+@Entity
+@Table(name = "medicine")
+public class MedicineEntity {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int medicine_id;
     private String medicine_name;
     private int brand_id;
     private String unit_type;
     private float dose;
+
 }

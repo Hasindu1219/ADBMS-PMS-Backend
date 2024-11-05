@@ -1,4 +1,4 @@
-package com.pms.PharmacyMS.Management_Medicine.DTO;
+package com.pms.PharmacyMS.medicine.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

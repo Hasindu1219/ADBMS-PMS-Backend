@@ -1,7 +1,7 @@
-package com.pms.PharmacyMS.Management_Medicine.Repository;
+package com.pms.PharmacyMS.medicine.repository;
 
 
-import com.pms.PharmacyMS.Management_Medicine.Entity.MedicineEntity;
+import com.pms.PharmacyMS.medicine.entity.MedicineEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
