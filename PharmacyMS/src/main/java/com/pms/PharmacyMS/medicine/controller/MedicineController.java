@@ -28,28 +28,29 @@ public class MedicineController {
 //        return  medicineService.addMedicine(medicineDTO);
 //    }
 
+    //Delete medicine
     @DeleteMapping("/delete")
     public String deleteMedicine(@RequestParam("medId") int medId) {
         System.out.println("Request to delete medicine with ID: " + medId);
         return medicineService.deleteMedicine(medId);
     }
 
-//    //Update medicine
-//    @PutMapping("/procedure_update_branch")
-//    public void procedure_update_branch(@RequestBody Branches_View_Dto_BranchManagement branchDto) {
-//        System.out.println("Location is "+ branchDto.getLocation());
-//        branchesManagementService.procedure_update_branch(
-//                String.valueOf(branchDto.getBranch_id()),
-//                branchDto.getBranch_name(),
-//                branchDto.getLocation(),
-//                branchDto.getContact_number(),
-//                branchDto.getUser_id());
-//    }
+    //Update medicine
+    @PutMapping("/update")
+    public void procedure_update_medicine(@RequestBody MedicineDTO medicineDTO) {
+        medicineService.sp_UpdateMedicine(
+                medicineDTO.getMedicine_id(),
+                medicineDTO.getMedicine_name(),
+                medicineDTO.getSupplier_id(),
+                medicineDTO.getUnit_type(),
+                medicineDTO.getDose()
+        );
+    }
 
 
+    //Add medicine
     @PostMapping("/add")
     public void procedure_insert_medicine(@RequestBody MedicineDTO medicineDTO) {
-        System.out.println(medicineDTO);
         medicineService.sp_AddMedicine(
                 medicineDTO.getMedicine_name(),
                 medicineDTO.getSupplier_id(),

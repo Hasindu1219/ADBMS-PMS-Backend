@@ -15,9 +15,9 @@ public interface MedicineRepo extends JpaRepository<MedicineEntity,Integer> {
     String deleteMedicine(@Param("medId") Long medId);
 
 
-//    //Procedure to update branch
-//    @Procedure(name = "procedure_update_branch")
-//    void procedure_update_branch(String inputBranchID, String inputName, String inputLocation, String inputContactNumber, String inputUserId);
+    //Procedure to update medicine
+    @Procedure(name = "sp_UpdateMedicine")
+    void sp_UpdateMedicine(int med_id, String med_name, int sup_id, String u_type,float Dose);
 
 
     //Procedure to insert a medicine

@@ -70,10 +70,10 @@ public class MedicineService {
     }
 
 
-//    //Update medicine
-//    public void procedure_update_branch (String inputBranchID, String inputName, String inputLocation, String inputContactNumber, String inputUserId){
-//        branchRepo.procedure_update_branch( inputBranchID, inputName, inputLocation, inputContactNumber, inputUserId );
-//    }
+    //Update medicine
+    public void sp_UpdateMedicine (int med_id, String med_name, int sup_id, String u_type,float Dose){
+        medicineRepo.sp_UpdateMedicine( med_id, med_name, sup_id, u_type, Dose );
+    }
 
 
     //Insert medicine
