@@ -3,6 +3,7 @@ package com.pms.PharmacyMS.medicine.controller;
 
 
 import com.pms.PharmacyMS.medicine.dto.MedicineDTO;
+import com.pms.PharmacyMS.medicine.dto.MedicineViewDTO;
 import com.pms.PharmacyMS.medicine.service.MedicineService;
 import com.pms.PharmacyMS.suppliers.dto.SupplierDto;
 import com.pms.PharmacyMS.suppliers.service.SupplierService;
@@ -17,8 +18,9 @@ import java.util.List;
 public class MedicineController {
     @Autowired
     private MedicineService medicineService;
+
     @GetMapping("/getallmedicines")
-    public List<MedicineDTO> getAllMedicines() {
+    public List<MedicineViewDTO> getAllMedicines() {
         return medicineService.getAllMedicines();
     }
 

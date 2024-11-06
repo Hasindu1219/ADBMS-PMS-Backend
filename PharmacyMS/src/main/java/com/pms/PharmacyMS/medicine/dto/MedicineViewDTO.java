@@ -1,18 +1,14 @@
-package com.pms.PharmacyMS.medicine.entity;
+package com.pms.PharmacyMS.medicine.dto;
 
-import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 @Data
-@Entity
-@Table(name = "medicine_view")
-public class MedicineViewEntity {
-    @Id
+public class MedicineViewDTO {
+
     private int medicine_id;
     private String medicine_name;
     private String branch_details;
