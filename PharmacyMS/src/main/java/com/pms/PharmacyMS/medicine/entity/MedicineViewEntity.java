@@ -15,7 +15,7 @@ public class MedicineViewEntity {
     @Id
     private int medicine_id;
     private String medicine_name;
-    private String branch_details;
+    private String supplier_details;
     private String unit_type;
     private float dose;
 }
