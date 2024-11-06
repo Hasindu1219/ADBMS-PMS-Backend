@@ -11,14 +11,12 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Data
 @Entity
-@Table(name = "branches_view")
-public class Branches_View_Entity {
+@Table(name = "branch")
+public class BranchEntity {
     @Id
     private int branch_id;
-    private String branch_name;
+    private String name;
     private String location;
     private String contact_number;
-    private String manager_name;
     private String is_disabled;
-    private String user_id;
 }

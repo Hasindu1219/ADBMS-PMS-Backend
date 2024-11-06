@@ -7,12 +7,10 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class Branches_View_Dto {
+public class BranchDto {
     private int branch_id;
-    private String branch_name;
+    private String name;
     private String location;
     private String contact_number;
-    private String manager_name;
     private String is_disabled;
-    private String user_id;
 }
