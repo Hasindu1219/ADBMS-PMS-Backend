@@ -72,7 +72,11 @@ public List<SupplierView> getAllSuppliersFromView() {
         query.setParameter("p_email", supplierDto.getEmail());
 
 
-        query.execute();
+        try {
+            query.execute();
+        } catch (Exception e) {
+            throw new RuntimeException("Error updating supplier: " + e.getMessage());
+        }
         return supplierDto;
     }
 }
