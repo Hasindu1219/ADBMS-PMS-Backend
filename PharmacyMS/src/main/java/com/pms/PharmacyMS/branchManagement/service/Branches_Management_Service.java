@@ -28,6 +28,7 @@ public class Branches_Management_Service {
 
     // -------------------------------- Service for Branches_view -------------------START
 
+    //Get all from barnch_view
     public List<Branches_View_Dto> getAllBranches (){
         List<Branches_View_Entity> allBranches = branchesViewRepo.findAll();
         return modelMapper.map(allBranches, new TypeToken <ArrayList<Branches_View_Dto>>(){}.getType());
@@ -35,7 +36,19 @@ public class Branches_Management_Service {
 
     // -------------------------------- Service for Branches_view -------------------END
 
+
+
+
+
+
+
+
     // -------------------------------- Service for Branches TABLE -------------------START
+
+    //Update disable status of branches
+    public void updateIsDisabled(String branch_id,String is_disabled ){
+        branchRepo.updateIsDisabled(branch_id,is_disabled);
+    }
 
 
     // -------------------------------- Service for Branches TABLE -------------------END
