@@ -1,9 +1,9 @@
 package com.pms.PharmacyMS.branchManagement.service;
 
-import com.pms.PharmacyMS.branchManagement.dto.Branches_View_Dto;
-import com.pms.PharmacyMS.branchManagement.entity.Branches_View_Entity;
-import com.pms.PharmacyMS.branchManagement.repository.BranchRepo;
-import com.pms.PharmacyMS.branchManagement.repository.Branches_View_Repo;
+import com.pms.PharmacyMS.branchManagement.dto.Branches_View_Dto_BranchManagement;
+import com.pms.PharmacyMS.branchManagement.entity.Branches_View_Entity_BranchManagement;
+import com.pms.PharmacyMS.branchManagement.repository.BranchRepo_BranchManagement;
+import com.pms.PharmacyMS.branchManagement.repository.Branches_View_Repo_BranchManagement;
 import jakarta.transaction.Transactional;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
@@ -18,9 +18,9 @@ import java.util.List;
 public class Branches_Management_Service {
 
     @Autowired
-    private Branches_View_Repo branchesViewRepo;
+    private Branches_View_Repo_BranchManagement branchesViewRepo;
     @Autowired
-    private BranchRepo branchRepo;
+    private BranchRepo_BranchManagement branchRepo;
     @Autowired
     private ModelMapper modelMapper;
 
@@ -29,9 +29,9 @@ public class Branches_Management_Service {
     // -------------------------------- Service for Branches_view -------------------START
 
     //Get all from barnch_view
-    public List<Branches_View_Dto> getAllBranches (){
-        List<Branches_View_Entity> allBranches = branchesViewRepo.findAll();
-        return modelMapper.map(allBranches, new TypeToken <ArrayList<Branches_View_Dto>>(){}.getType());
+    public List<Branches_View_Dto_BranchManagement> getAllBranches (){
+        List<Branches_View_Entity_BranchManagement> allBranches = branchesViewRepo.findAll();
+        return modelMapper.map(allBranches, new TypeToken <ArrayList<Branches_View_Dto_BranchManagement>>(){}.getType());
     }
 
     // -------------------------------- Service for Branches_view -------------------END

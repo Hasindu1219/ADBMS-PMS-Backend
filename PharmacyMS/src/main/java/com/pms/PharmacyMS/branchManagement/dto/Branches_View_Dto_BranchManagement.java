@@ -1,19 +1,13 @@
-package com.pms.PharmacyMS.branchManagement.entity;
+package com.pms.PharmacyMS.branchManagement.dto;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 @Data
-@Entity
-@Table(name = "branches_view")
-public class Branches_View_Entity {
-    @Id
+public class Branches_View_Dto_BranchManagement {
     private int branch_id;
     private String branch_name;
     private String location;
