@@ -8,7 +8,7 @@ import java.util.Date;
 
 @Entity
 @Table(name = "inventory")
-public class Inventory {
+public class Inventory_RG {
     @Id
     private int inventory_id;
     private int quantity;
