@@ -1,8 +1,9 @@
 package com.pms.PharmacyMS.ReportGenerate.Controller;
 
 
-import com.pms.PharmacyMS.ReportGenerate.Service.SaleReportService;
-import com.pms.PharmacyMS.ReportGenerate.Service.StockService;
+import com.pms.PharmacyMS.ReportGenerate.Service.InventoryService_RG;
+import com.pms.PharmacyMS.ReportGenerate.Service.SaleReportService_RG;
+import com.pms.PharmacyMS.ReportGenerate.Service.StockService_RG;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
@@ -13,7 +14,6 @@ import java.time.Month;
 import java.time.Year;
 import java.util.Date;
 import java.util.List;
-import java.util.Objects;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:5173")
@@ -21,10 +21,13 @@ import java.util.Objects;
 public class ReportGenerateController {
 
     @Autowired
-    private SaleReportService saleReportService;
+    private SaleReportService_RG saleReportService;
 
     @Autowired
-    private StockService stockService;
+    private StockService_RG stockService;
+
+    @Autowired
+    private InventoryService_RG inventoryService;
 
 //    http://localhost:8080/api/report/dailySales?selectedDate=2024-11-01
     @GetMapping("/dailySales")
@@ -60,6 +63,12 @@ public class ReportGenerateController {
     @GetMapping("/expiryTracking")
     public List<Object[]> getExpiryTracking(@RequestParam("branchId") int branchId) {
         return stockService.getExpiryTrackingData(branchId);
+    }
+
+    //    http://localhost:8080/api/report/purchaseHistory?branchId=1&month=&year=
+    @GetMapping("/purchaseHistory")
+    public List<Object[]> getPurchaseHistory(@RequestParam("branchId") int branchId,@RequestParam("month") int month,@RequestParam("year") int year) {
+        return inventoryService.getPurchaseHistory(branchId,month,year);
     }
 
 }

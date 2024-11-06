@@ -1,6 +1,6 @@
 package com.pms.PharmacyMS.ReportGenerate.Service;
 
-import com.pms.PharmacyMS.ReportGenerate.Repo.SaleDetailsRepo;
+import com.pms.PharmacyMS.ReportGenerate.Repo.SaleDetailsRepo_RG;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,10 +13,10 @@ import java.util.List;
 
 @Service
 @Transactional
-public class SaleReportService
+public class SaleReportService_RG
 {
     @Autowired
-    private SaleDetailsRepo saleDetailsRepo;
+    private SaleDetailsRepo_RG saleDetailsRepo;
 
 
     public List<Object[]> getMonthlySales(Month selectedMonth,Year selectedYear) {
