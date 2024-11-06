@@ -1,9 +1,13 @@
 package com.pms.PharmacyMS.branchManagement.service;
 
+import com.pms.PharmacyMS.branchManagement.dto.BranchDto_BranchManagement;
 import com.pms.PharmacyMS.branchManagement.dto.Branches_View_Dto_BranchManagement;
+import com.pms.PharmacyMS.branchManagement.dto.UserDto_branchManagement;
 import com.pms.PharmacyMS.branchManagement.entity.Branches_View_Entity_BranchManagement;
+import com.pms.PharmacyMS.branchManagement.entity.UserEntity_BranchManagement;
 import com.pms.PharmacyMS.branchManagement.repository.BranchRepo_BranchManagement;
 import com.pms.PharmacyMS.branchManagement.repository.Branches_View_Repo_BranchManagement;
+import com.pms.PharmacyMS.branchManagement.repository.UserRepo_BranchManagement;
 import jakarta.transaction.Transactional;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
@@ -21,6 +25,8 @@ public class Branches_Management_Service {
     private Branches_View_Repo_BranchManagement branchesViewRepo;
     @Autowired
     private BranchRepo_BranchManagement branchRepo;
+    @Autowired
+    private UserRepo_BranchManagement userRepoBranchManagement;
     @Autowired
     private ModelMapper modelMapper;
 
@@ -41,8 +47,6 @@ public class Branches_Management_Service {
 
 
 
-
-
     // -------------------------------- Service for Branches TABLE -------------------START
 
     //Update disable status of branches
@@ -50,6 +54,27 @@ public class Branches_Management_Service {
         branchRepo.updateIsDisabled(branch_id,is_disabled);
     }
 
+    //Update branch
+    public void procedure_update_branch (String inputBranchID, String inputName, String inputLocation, String inputContactNumber, String inputUserId){
+        branchRepo.procedure_update_branch( inputBranchID, inputName, inputLocation, inputContactNumber, inputUserId );
+    }
+
+
+    //Insert Branch
+    public void procedure_insert_branch (String inputName, String inputLocation, String inputContactNumber){
+        branchRepo.procedure_insert_branch(inputName, inputLocation, inputContactNumber);
+    }
+
 
     // -------------------------------- Service for Branches TABLE -------------------END
+
+
+
+    // -------------------------------- Service for User TABLE -------------------START
+    public List<UserDto_branchManagement> getAllManagers(){
+        List<UserEntity_BranchManagement> useList = userRepoBranchManagement.getAllManagers();
+        return modelMapper.map(useList, new TypeToken <ArrayList<UserDto_branchManagement>>(){}.getType());
+    }
+
+    // -------------------------------- Service for User TABLE -------------------END
 }
