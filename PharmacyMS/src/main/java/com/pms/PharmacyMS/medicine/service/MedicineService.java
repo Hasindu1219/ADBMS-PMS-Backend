@@ -55,21 +55,17 @@ public class MedicineService {
 
     public String deleteMedicine(int medId) {
         try {
-            // Execute the stored procedure
             String sql = "{call sp_DeleteMedicine(?)}";
             jdbcTemplate.update(sql, medId);
             return "Medicine deleted successfully.";
         } catch (DataAccessException e) {
-            // Check if the exception is caused by the custom SIGNAL in the stored procedure
             if (e.getCause() instanceof SQLException) {
                 SQLException sqlException = (SQLException) e.getCause();
-                // Check for SQLState 45000, which is raised by SIGNAL in the stored procedure
                 if ("45000".equals(sqlException.getSQLState())) {
-                    return "Medicine is in inventory and cannot be deleted."; // Custom message
+                    return "Medicine is in inventory and cannot be deleted.";
                 }
             }
-            // Default error message
-            return "Error: " + e.getMessage(); // Return the error message raised by SIGNAL or any other exception
+            return "Error: " + e.getMessage();
         }
     }
 
