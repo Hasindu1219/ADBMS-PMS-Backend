@@ -19,5 +19,5 @@ public class InventoryDto {
     private int supplierId;
     private int medicineId;
     private Date expiryDate;
-
+    private int branchId;
 }

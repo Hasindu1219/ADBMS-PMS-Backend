@@ -3,7 +3,9 @@ package com.pms.PharmacyMS.suppliers.service;
 
 import com.pms.PharmacyMS.suppliers.dto.SupplierDto;
 import com.pms.PharmacyMS.suppliers.entity.Supplier;
+import com.pms.PharmacyMS.suppliers.entity.SupplierView;
 import com.pms.PharmacyMS.suppliers.repository.SupplierRepo;
+import com.pms.PharmacyMS.suppliers.repository.SupplierViewRepo;
 import jakarta.transaction.Transactional;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +14,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 @Transactional
@@ -22,12 +23,12 @@ public class SupplierService {
     @Autowired
     private ModelMapper modelMapper;
 
-    public List<SupplierDto> getAllSuppliers() {
-        return supplierRepo.findAll().stream()
-                .map(supplier -> modelMapper.map(supplier, SupplierDto.class))
-                .collect(Collectors.toList());
-    }
-
+    @Autowired
+    private SupplierViewRepo supplierViewRepo;
+// Method to get all suppliers from SupplierView
+public List<SupplierView> getAllSuppliersFromView() {
+    return supplierViewRepo.findAll();
+}
     public SupplierDto addSupplier(SupplierDto supplierDto) {
         supplierRepo.save(modelMapper.map( supplierDto, Supplier.class));
         return  supplierDto;

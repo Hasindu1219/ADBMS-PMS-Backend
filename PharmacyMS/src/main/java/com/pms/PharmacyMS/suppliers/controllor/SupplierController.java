@@ -2,6 +2,7 @@ package com.pms.PharmacyMS.suppliers.controllor;
 
 
 import com.pms.PharmacyMS.suppliers.dto.SupplierDto;
+import com.pms.PharmacyMS.suppliers.entity.SupplierView;
 import com.pms.PharmacyMS.suppliers.service.SupplierService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -12,13 +13,18 @@ import java.util.List;
 @CrossOrigin
 @RequestMapping("api/v1")
 public class SupplierController {
+
     @Autowired
     private SupplierService supplierService;
-    @GetMapping("/getsuppliers")
-    public List<SupplierDto> getAllSuppliers() {
-        return supplierService.getAllSuppliers();
-    }
 
+
+//    public List<SupplierDto> getAllSuppliers() {
+//        return supplierService.getAllSuppliers();
+//    }
+    @GetMapping("/getsuppliers")
+    public List<SupplierView> getAllSuppliersFromView() {
+        return  supplierService.getAllSuppliersFromView();
+    }
     @PostMapping("/addsupplier")
     public SupplierDto addSupplier(@RequestBody SupplierDto supplierDto) {
         return  supplierService.addSupplier(supplierDto);

@@ -36,5 +36,7 @@ public class Inventory {
     @Column(name="expiry_date")
     private Date expiryDate;
 
+    @Column(name="branch_id")
+    private int branchId;
 
 }

@@ -23,7 +23,9 @@ public class InventoryService {
 
     // Save the inventory record
     public InventoryDto addInventory(InventoryDto inventoryDto) {
+        //System.out.println("Inventory DTO: " + inventoryDto);
         Inventory inventory = modelMapper.map(inventoryDto, Inventory.class);
+        //System.out.println("Mapped Inventory Entity: " + inventory);
         inventoryRepo.save(inventory);
         return  inventoryDto;
         
