@@ -15,13 +15,13 @@ public interface MedicineRepo extends JpaRepository<MedicineEntity,Integer> {
     String deleteMedicine(@Param("medId") Long medId);
 
 
-    @Transactional
-    @Procedure(name = "sp_AddMedicine")
-    String addMedicine(
-            @Param("med_name") String medName,
-            @Param("sup_id") int supId,
-            @Param("u_type") String unitType,
-            @Param("Dose") float dose
-    );
+//    //Procedure to update branch
+//    @Procedure(name = "procedure_update_branch")
+//    void procedure_update_branch(String inputBranchID, String inputName, String inputLocation, String inputContactNumber, String inputUserId);
+
+
+    //Procedure to insert a medicine
+    @Procedure (name = "sp_AddMedicine")
+    void sp_AddMedicine(String med_name, int sup_id, String u_type,float Dose );
 
 }

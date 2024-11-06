@@ -70,14 +70,16 @@ public class MedicineService {
     }
 
 
-    // add medicine
-    public String addMedicine(String medName, int supId, String unitType, float dose) {
-        try {
-            String result = medicineRepo.addMedicine(medName, supId, unitType, dose);
-            return result;
-        } catch (Exception e) {
-            return "Error: " + e.getMessage();
-        }
+//    //Update medicine
+//    public void procedure_update_branch (String inputBranchID, String inputName, String inputLocation, String inputContactNumber, String inputUserId){
+//        branchRepo.procedure_update_branch( inputBranchID, inputName, inputLocation, inputContactNumber, inputUserId );
+//    }
+
+
+    //Insert medicine
+    public void sp_AddMedicine(String med_name, int sup_id, String u_type,float Dose ){
+        medicineRepo.sp_AddMedicine(med_name, sup_id, u_type,Dose);
     }
+
 
 }

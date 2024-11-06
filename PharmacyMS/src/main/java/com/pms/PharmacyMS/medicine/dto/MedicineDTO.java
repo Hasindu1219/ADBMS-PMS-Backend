@@ -12,7 +12,7 @@ public class MedicineDTO {
 
     private int medicine_id;
     private String medicine_name;
-    private int brand_id;
+    private int supplier_id;
     private String unit_type;
     private float dose;
 }

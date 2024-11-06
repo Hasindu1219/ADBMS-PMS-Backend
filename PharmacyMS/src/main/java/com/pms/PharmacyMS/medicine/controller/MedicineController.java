@@ -2,6 +2,7 @@ package com.pms.PharmacyMS.medicine.controller;
 
 
 
+import com.pms.PharmacyMS.branchManagement.dto.Branches_View_Dto_BranchManagement;
 import com.pms.PharmacyMS.medicine.dto.MedicineDTO;
 import com.pms.PharmacyMS.medicine.dto.MedicineViewDTO;
 import com.pms.PharmacyMS.medicine.service.MedicineService;
@@ -33,14 +34,28 @@ public class MedicineController {
         return medicineService.deleteMedicine(medId);
     }
 
+//    //Update medicine
+//    @PutMapping("/procedure_update_branch")
+//    public void procedure_update_branch(@RequestBody Branches_View_Dto_BranchManagement branchDto) {
+//        System.out.println("Location is "+ branchDto.getLocation());
+//        branchesManagementService.procedure_update_branch(
+//                String.valueOf(branchDto.getBranch_id()),
+//                branchDto.getBranch_name(),
+//                branchDto.getLocation(),
+//                branchDto.getContact_number(),
+//                branchDto.getUser_id());
+//    }
+
+
     @PostMapping("/add")
-    public String addMedicine(
-            @RequestParam String medName,
-            @RequestParam int supId,
-            @RequestParam String unitType,
-            @RequestParam float dose
-    ) {
-        return medicineService.addMedicine(medName, supId, unitType, dose);
+    public void procedure_insert_medicine(@RequestBody MedicineDTO medicineDTO) {
+        System.out.println(medicineDTO);
+        medicineService.sp_AddMedicine(
+                medicineDTO.getMedicine_name(),
+                medicineDTO.getSupplier_id(),
+                medicineDTO.getUnit_type(),
+                medicineDTO.getDose()
+        );
     }
 
 }
