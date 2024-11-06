@@ -19,6 +19,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.sql.SQLException;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -54,13 +55,21 @@ public class MedicineService {
 
     public String deleteMedicine(int medId) {
         try {
-            // Call the stored procedure, note the correct name of the procedure
-            String sql = "{call sp_DeleteMedicine(?)}";  // Use the correct procedure name
+            // Execute the stored procedure
+            String sql = "{call sp_DeleteMedicine(?)}";
             jdbcTemplate.update(sql, medId);
             return "Medicine deleted successfully.";
         } catch (DataAccessException e) {
-            // Catch the exception and return the error message from the procedure
-            return "Error: " + e.getMessage(); // This will give you the error from SIGNAL
+            // Check if the exception is caused by the custom SIGNAL in the stored procedure
+            if (e.getCause() instanceof SQLException) {
+                SQLException sqlException = (SQLException) e.getCause();
+                // Check for SQLState 45000, which is raised by SIGNAL in the stored procedure
+                if ("45000".equals(sqlException.getSQLState())) {
+                    return "Medicine is in inventory and cannot be deleted."; // Custom message
+                }
+            }
+            // Default error message
+            return "Error: " + e.getMessage(); // Return the error message raised by SIGNAL or any other exception
         }
     }
 
