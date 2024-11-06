@@ -46,11 +46,11 @@ public class MedicineService {
                 .collect(Collectors.toList());
     }
 
-    // add medicine
-    public MedicineDTO addMedicine(MedicineDTO medicineDTO) {
-        medicineRepo.save(modelMapper.map( medicineDTO, MedicineEntity.class));
-        return  medicineDTO;
-    }
+//    // add medicine
+//    public MedicineDTO addMedicine(MedicineDTO medicineDTO) {
+//        medicineRepo.save(modelMapper.map( medicineDTO, MedicineEntity.class));
+//        return  medicineDTO;
+//    }
 
     // delete medicine after checking inventory
     public String deleteMedicine(int medId) {
@@ -65,6 +65,17 @@ public class MedicineService {
                     return "Medicine is in inventory and cannot be deleted.";
                 }
             }
+            return "Error: " + e.getMessage();
+        }
+    }
+
+    
+    // add medicine
+    public String addMedicine(String medName, int supId, String unitType, float dose) {
+        try {
+            String result = medicineRepo.addMedicine(medName, supId, unitType, dose);
+            return result;
+        } catch (Exception e) {
             return "Error: " + e.getMessage();
         }
     }
