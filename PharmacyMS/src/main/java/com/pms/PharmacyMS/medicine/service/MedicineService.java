@@ -52,7 +52,7 @@ public class MedicineService {
         return  medicineDTO;
     }
 
-
+    // delete medicine after checking inventory
     public String deleteMedicine(int medId) {
         try {
             String sql = "{call sp_DeleteMedicine(?)}";
