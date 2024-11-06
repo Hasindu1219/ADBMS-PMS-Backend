@@ -13,7 +13,6 @@ public interface StockRepo extends JpaRepository<Stock, Integer> {
     @Procedure(name="getLowStockItems")
     List<Object[]> getLowStockItems(int branch_id);
 
-    @Procedure(name = "getExpiryTracking")
-    List<Object[]> getExpiryTracking(int branch_id);
+
 
 }

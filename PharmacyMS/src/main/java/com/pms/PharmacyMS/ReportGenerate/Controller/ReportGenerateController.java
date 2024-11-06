@@ -1,6 +1,7 @@
 package com.pms.PharmacyMS.ReportGenerate.Controller;
 
 
+import com.pms.PharmacyMS.ReportGenerate.Service.InventoryService;
 import com.pms.PharmacyMS.ReportGenerate.Service.SaleReportService;
 import com.pms.PharmacyMS.ReportGenerate.Service.StockService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +26,9 @@ public class ReportGenerateController {
 
     @Autowired
     private StockService stockService;
+
+    @Autowired
+    private InventoryService inventoryService;
 
 //    http://localhost:8080/api/report/dailySales?selectedDate=2024-11-01
     @GetMapping("/dailySales")
@@ -60,6 +64,12 @@ public class ReportGenerateController {
     @GetMapping("/expiryTracking")
     public List<Object[]> getExpiryTracking(@RequestParam("branchId") int branchId) {
         return stockService.getExpiryTrackingData(branchId);
+    }
+
+    //    http://localhost:8080/api/report/purchaseHistory?branchId=1&month=&year=
+    @GetMapping("/purchaseHistory")
+    public List<Object[]> getPurchaseHistory(@RequestParam("branchId") int branchId,@RequestParam("month") int month,@RequestParam("year") int year) {
+        return inventoryService.getPurchaseHistory(branchId,month,year);
     }
 
 }
