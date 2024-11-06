@@ -17,19 +17,25 @@ public class SupplierController {
     @Autowired
     private SupplierService supplierService;
 
-
-//    public List<SupplierDto> getAllSuppliers() {
-//        return supplierService.getAllSuppliers();
-//    }
+    // Fetch all suppliers
     @GetMapping("/getsuppliers")
     public List<SupplierView> getAllSuppliersFromView() {
         return  supplierService.getAllSuppliersFromView();
     }
+
+    //Fetch supplier by ID
+    @GetMapping("getSupplierById/{id}")
+    public SupplierDto getSupplierById(@PathVariable int id) {
+        return supplierService.getSupplierById(id);
+    }
+
+    // add supplier
     @PostMapping("/addsupplier")
     public SupplierDto addSupplier(@RequestBody SupplierDto supplierDto) {
         return  supplierService.addSupplier(supplierDto);
     }
 
+    // update supplier
     @PutMapping("/updatesupplier/{id}")
     public SupplierDto updateSupplier(@PathVariable int id, @RequestBody SupplierDto supplierDto) {
         return supplierService.updateSupplier(id,supplierDto);

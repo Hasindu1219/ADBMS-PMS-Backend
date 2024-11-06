@@ -6,5 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 
-public interface SupplierViewRepo extends JpaRepository<SupplierView,String> {
+public interface SupplierViewRepo extends JpaRepository<SupplierView,Integer> {
 }

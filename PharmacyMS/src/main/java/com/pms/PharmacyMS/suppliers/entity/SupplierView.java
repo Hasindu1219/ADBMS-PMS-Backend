@@ -10,6 +10,7 @@ import lombok.Data;
 @Data
 public class SupplierView {
     @Id
+    private int supplierId;
     private String supplierName;
     private String saleRepName;
     private String address;
