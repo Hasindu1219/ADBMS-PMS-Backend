@@ -60,6 +60,12 @@ public class Branches_Management_Service {
     }
 
 
+    //Insert Branch
+    public void procedure_insert_branch (String inputName, String inputLocation, String inputContactNumber){
+        branchRepo.procedure_insert_branch(inputName, inputLocation, inputContactNumber);
+    }
+
+
     // -------------------------------- Service for Branches TABLE -------------------END
 
 

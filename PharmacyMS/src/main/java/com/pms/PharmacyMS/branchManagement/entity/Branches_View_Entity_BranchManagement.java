@@ -1,8 +1,6 @@
 package com.pms.PharmacyMS.branchManagement.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -14,6 +12,7 @@ import lombok.NoArgsConstructor;
 @Table(name = "branches_view")
 public class Branches_View_Entity_BranchManagement {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int branch_id;
     private String branch_name;
     private String location;

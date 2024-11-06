@@ -17,4 +17,8 @@ public interface BranchRepo_BranchManagement extends JpaRepository<BranchEntity_
     @Procedure(name = "procedure_update_branch")
     void procedure_update_branch(String inputBranchID, String inputName, String inputLocation, String inputContactNumber, String inputUserId);
 
+
+    //Procedure to insert a branch
+    @Procedure (name = "procedure_insert_branch")
+    void procedure_insert_branch(String inputName, String inputLocation, String inputContactNumber);
 }

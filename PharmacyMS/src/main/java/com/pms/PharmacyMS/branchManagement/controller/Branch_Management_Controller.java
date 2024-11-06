@@ -49,6 +49,17 @@ public class Branch_Management_Controller {
                 branchDto.getUser_id());
     }
 
+
+    @PostMapping("/procedure_insert_branch")
+    public void procedure_insert_branch(@RequestBody Branches_View_Dto_BranchManagement branchDto) {
+        branchesManagementService.procedure_insert_branch(
+                branchDto.getBranch_name(),
+                branchDto.getLocation(),
+                branchDto.getContact_number()
+        );
+    }
+
+
     //-----------------------------------------------Controller for branch table ------------------ END
 
 
