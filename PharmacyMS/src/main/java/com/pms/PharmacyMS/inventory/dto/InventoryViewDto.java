@@ -20,6 +20,7 @@ public class InventoryViewDto {
     private String phoneNumber;
     private Integer quantity;
     private Date receivedDate;
+    private Date expiryDate;
     private BigDecimal price;
 
 

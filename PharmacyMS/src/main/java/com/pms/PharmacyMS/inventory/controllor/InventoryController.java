@@ -4,6 +4,7 @@ package com.pms.PharmacyMS.inventory.controllor;
 import com.pms.PharmacyMS.inventory.dto.InventoryDto;
 import com.pms.PharmacyMS.inventory.dto.InventoryViewDto;
 import com.pms.PharmacyMS.inventory.service.InventoryService;
+import com.pms.PharmacyMS.suppliers.dto.SupplierDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,6 +22,11 @@ public class InventoryController {
         return  inventoryService.addInventory(inventoryDto);
     }
 
+    //Fetch inventory by ID
+    @GetMapping("getInventoryById/{id}")
+    public InventoryDto getInventoryById(@PathVariable int id) {
+        return inventoryService.getInventoryById(id);
+    }
     @GetMapping("/inventoryview")
     public List<InventoryViewDto> getInventoryView(){
         return inventoryService.getAllInventoryItems();
