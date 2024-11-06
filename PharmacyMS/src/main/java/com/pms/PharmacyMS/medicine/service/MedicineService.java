@@ -69,7 +69,7 @@ public class MedicineService {
         }
     }
 
-    
+
     // add medicine
     public String addMedicine(String medName, int supId, String unitType, float dose) {
         try {
