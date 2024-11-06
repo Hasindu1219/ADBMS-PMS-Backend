@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@CrossOrigin(origins = "*", allowCredentials = "false")
+@CrossOrigin(origins = "http://localhost:5173")
 @RestController
 @RequestMapping("/api/medicine")
 public class MedicineController {
@@ -27,6 +27,12 @@ public class MedicineController {
     @PostMapping("/addmedicine")
     public MedicineDTO addMedicine(@RequestBody MedicineDTO medicineDTO) {
         return  medicineService.addMedicine(medicineDTO);
+    }
+
+    @DeleteMapping("/delete")
+    public String deleteMedicine(@RequestParam("medId") int medId) {
+        System.out.println("Request to delete medicine with ID: " + medId);
+        return medicineService.deleteMedicine(medId);
     }
 
 }

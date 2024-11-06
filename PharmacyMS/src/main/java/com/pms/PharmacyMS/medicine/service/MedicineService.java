@@ -13,7 +13,9 @@ import com.pms.PharmacyMS.suppliers.repository.SupplierRepo;
 import jakarta.transaction.Transactional;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.http.HttpStatus;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -32,6 +34,9 @@ public class MedicineService {
     @Autowired
     private ModelMapper modelMapper;
 
+    @Autowired
+    private JdbcTemplate jdbcTemplate;
+
 
     // get all medicines
     public List<MedicineViewDTO> getAllMedicines() {
@@ -44,6 +49,19 @@ public class MedicineService {
     public MedicineDTO addMedicine(MedicineDTO medicineDTO) {
         medicineRepo.save(modelMapper.map( medicineDTO, MedicineEntity.class));
         return  medicineDTO;
+    }
+
+
+    public String deleteMedicine(int medId) {
+        try {
+            // Call the stored procedure, note the correct name of the procedure
+            String sql = "{call sp_DeleteMedicine(?)}";  // Use the correct procedure name
+            jdbcTemplate.update(sql, medId);
+            return "Medicine deleted successfully.";
+        } catch (DataAccessException e) {
+            // Catch the exception and return the error message from the procedure
+            return "Error: " + e.getMessage(); // This will give you the error from SIGNAL
+        }
     }
 
 }
