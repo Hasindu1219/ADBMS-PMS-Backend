@@ -10,9 +10,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Repository
 public interface StockRepo extends JpaRepository<StockEntity,Integer> {
-//    @Transactional
-//    @Procedure(name = "sp_DeleteMedicine")
-//    String deleteMedicine(@Param("medId") Long medId);
 
+    @Procedure(procedureName = "sp_UpdateStockSalePrice")
+    String sp_UpdateStockSalePrice(int med_id, double p_new_price);
 
 }

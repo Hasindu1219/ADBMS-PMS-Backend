@@ -32,29 +32,14 @@ public class StockService {
     private JdbcTemplate jdbcTemplate;
 
 
-    // get all medicines
+    // get all Stocks
     public List<StockViewEntity> getStockByBranchId(Integer branchId) {
         return stockViewRepo.sales_stock_view(branchId);
     }
 
-
-
-//    // delete medicine after checking inventory
-//    public String deleteMedicine(int medId) {
-//        try {
-//            String sql = "{call sp_DeleteMedicine(?)}";
-//            jdbcTemplate.update(sql, medId);
-//            return "Medicine deleted successfully.";
-//        } catch (DataAccessException e) {
-//            if (e.getCause() instanceof SQLException) {
-//                SQLException sqlException = (SQLException) e.getCause();
-//                if ("45000".equals(sqlException.getSQLState())) {
-//                    return "Medicine is in inventory and cannot be deleted.";
-//                }
-//            }
-//            return "Error: " + e.getMessage();
-//        }
-//    }
+    public String updateSalePrice(int medicineId, double newPrice) {
+        return stockRepo.sp_UpdateStockSalePrice(medicineId,newPrice);
+    }
 
 
 

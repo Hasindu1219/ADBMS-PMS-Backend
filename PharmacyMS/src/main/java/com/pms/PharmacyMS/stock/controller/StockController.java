@@ -18,20 +18,17 @@ public class StockController {
     @Autowired
     private StockService stockService;
 
+    // Endpoint for get all stock details
     @GetMapping("/getstocksinbranch/{branchId}")
     public List<StockViewEntity> getStockByBranch(@PathVariable Integer branchId) {
         return stockService.getStockByBranchId(branchId);
     }
 
 
-
-//    //Delete medicine
-//    @DeleteMapping("/delete")
-//    public String deleteMedicine(@RequestParam("medId") int medId) {
-//        System.out.println("Request to delete medicine with ID: " + medId);
-//        return medicineService.deleteMedicine(medId);
-//    }
-
-
+    // Endpoint to update stock sale price
+    @PutMapping("/updatesaleprice")
+    public String updatePrice(@RequestParam int medicineId, @RequestParam double newPrice) {
+        return stockService.updateSalePrice(medicineId,newPrice);
+    }
 
 }
