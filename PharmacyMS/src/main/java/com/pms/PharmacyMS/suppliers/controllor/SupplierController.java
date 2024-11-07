@@ -34,10 +34,16 @@ public class SupplierController {
     public SupplierDto addSupplier(@RequestBody SupplierDto supplierDto) {
         return  supplierService.addSupplier(supplierDto);
     }
-
-    // update supplier
+    //update supplier
     @PutMapping("/updatesupplier/{id}")
-    public SupplierDto updateSupplier(@PathVariable int id, @RequestBody SupplierDto supplierDto) {
-        return supplierService.updateSupplier(id,supplierDto);
+    public void sp_updateSupplier(@PathVariable int id,@RequestBody SupplierDto supplierDto) {
+        supplierService.sp_updateSupplier(
+                id,
+                supplierDto.getSupplierName(),
+                supplierDto.getSaleRepName(),
+                supplierDto.getAddress(),
+                supplierDto.getPhoneNumber(),
+                supplierDto.getEmail()
+        );
     }
 }
