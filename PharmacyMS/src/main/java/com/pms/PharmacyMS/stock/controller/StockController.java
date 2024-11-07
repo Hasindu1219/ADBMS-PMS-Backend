@@ -4,6 +4,7 @@ package com.pms.PharmacyMS.stock.controller;
 
 import com.pms.PharmacyMS.stock.dto.StockDTO;
 import com.pms.PharmacyMS.stock.dto.StockViewDTO;
+import com.pms.PharmacyMS.stock.entity.StockViewEntity;
 import com.pms.PharmacyMS.stock.service.StockService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -17,9 +18,9 @@ public class StockController {
     @Autowired
     private StockService stockService;
 
-    @GetMapping("/getallstocks")
-    public List<StockViewDTO> getAllStocks() {
-        return stockService.getAllStocks();
+    @GetMapping("/getstocksinbranch/{branchId}")
+    public List<StockViewEntity> getStockByBranch(@PathVariable Integer branchId) {
+        return stockService.getStockByBranchId(branchId);
     }
 
 

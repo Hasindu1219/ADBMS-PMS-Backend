@@ -2,6 +2,7 @@ package com.pms.PharmacyMS.stock.service;
 
 
 import com.pms.PharmacyMS.stock.dto.StockViewDTO;
+import com.pms.PharmacyMS.stock.entity.StockViewEntity;
 import com.pms.PharmacyMS.stock.repository.StockRepo;
 import com.pms.PharmacyMS.stock.repository.StockViewRepo;
 import jakarta.transaction.Transactional;
@@ -32,10 +33,8 @@ public class StockService {
 
 
     // get all medicines
-    public List<StockViewDTO> getAllStocks() {
-        return stockViewRepo.findAll().stream()
-                .map(stockView -> modelMapper.map(stockView, StockViewDTO.class))
-                .collect(Collectors.toList());
+    public List<StockViewEntity> getStockByBranchId(Integer branchId) {
+        return stockViewRepo.sales_stock_view(branchId);
     }
 
 
