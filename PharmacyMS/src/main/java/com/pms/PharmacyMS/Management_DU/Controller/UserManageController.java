@@ -106,5 +106,15 @@ public class UserManageController {
         userService.softDeleteUser(userId);
     }
 
+    @DeleteMapping("/hard-delete/{userId}")
+    public void hardDeleteUser(@PathVariable Integer userId) {
+        userService.hardDeleteUser(userId);
+    }
+
+    @GetMapping("/disable-users")
+    public List<UserEntity> getAllDisabledUsers() {
+        return userService.getAllDisabledUsers();
+    }
+
 
 }
