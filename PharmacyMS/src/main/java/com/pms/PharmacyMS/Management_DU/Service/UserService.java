@@ -190,7 +190,46 @@ public class UserService {
         return responseDTO;
     }
 
+    public void createUser(UserEntity user) {
+        userRepo.createUser(
+                user.getName(),
+                user.getContact_no(),
+                user.getSalary(),
+                user.getJoined_date(),
+                user.getEmail(),
+                user.getPassword(),
+                user.getBranch_id(),
+                user.getRole_id()
+        );
+    }
 
+    public List<UserEntity> getAllActiveUsers() {
+        return userRepo.getAllActiveUsers();
+    }
+
+
+    public Optional<UserEntity> getUserById(Integer userId) {
+        return Optional.ofNullable(userRepo.getUserById(userId));
+    }
+
+
+    public void updateUser(Integer userId, UserEntity userDetails) {
+        userRepo.updateUser(
+                userId,
+                userDetails.getName(),
+                userDetails.getContact_no(),
+                userDetails.getSalary(),
+                userDetails.getJoined_date(),
+                userDetails.getEmail(),
+                userDetails.getPassword(),
+                userDetails.getBranch_id(),
+                userDetails.getRole_id()
+        );
+    }
+
+    public void softDeleteUser(Integer userId) {
+        userRepo.softDeleteUser(userId);
+    }
 
 
 

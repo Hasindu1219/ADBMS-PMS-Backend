@@ -2,6 +2,7 @@ package com.pms.PharmacyMS.Management_DU.Controller;
 
 import com.pms.PharmacyMS.Management_DU.DTO.ResponseDTO;
 import com.pms.PharmacyMS.Management_DU.DTO.UserManageDTO;
+import com.pms.PharmacyMS.Management_DU.Entity.UserEntity;
 import com.pms.PharmacyMS.Management_DU.Service.UserService;
 import com.pms.PharmacyMS.Management_DU.Util.VarList;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,10 +11,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @CrossOrigin(origins = "*", allowCredentials = "false")
 @RestController
-@RequestMapping("/api/usermng")
+@RequestMapping("/api/users")
 public class UserManageController {
 
     @Autowired
@@ -78,5 +80,31 @@ public class UserManageController {
             return new ResponseEntity(deleteOneUserById,HttpStatus.NOT_FOUND);
         }
     }
+
+    @PostMapping
+    public void createUser(@RequestBody UserEntity user) {
+        userService.createUser(user);
+    }
+
+    @GetMapping
+    public List<UserEntity> getAllActiveUsers() {
+        return userService.getAllActiveUsers();
+    }
+
+    @GetMapping("/{userId}")
+    public Optional<UserEntity> getUserById(@PathVariable Integer userId) {
+        return userService.getUserById(userId);
+    }
+
+    @PutMapping("/{userId}")
+    public void updateUser(@PathVariable Integer userId, @RequestBody UserEntity userDetails) {
+        userService.updateUser(userId, userDetails);
+    }
+
+    @DeleteMapping("/{userId}")
+    public void softDeleteUser(@PathVariable Integer userId) {
+        userService.softDeleteUser(userId);
+    }
+
 
 }
