@@ -14,5 +14,4 @@ public interface StockRepo_RG extends JpaRepository<Stock_RG, Integer> {
     List<Object[]> getLowStockItems(int branch_id);
 
 
-
 }
