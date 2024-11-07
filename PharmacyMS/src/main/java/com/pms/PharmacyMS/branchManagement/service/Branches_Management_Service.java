@@ -1,6 +1,5 @@
 package com.pms.PharmacyMS.branchManagement.service;
 
-import com.pms.PharmacyMS.branchManagement.dto.BranchDto_BranchManagement;
 import com.pms.PharmacyMS.branchManagement.dto.Branches_View_Dto_BranchManagement;
 import com.pms.PharmacyMS.branchManagement.dto.UserDto_branchManagement;
 import com.pms.PharmacyMS.branchManagement.entity.Branches_View_Entity_BranchManagement;
@@ -77,4 +76,8 @@ public class Branches_Management_Service {
     }
 
     // -------------------------------- Service for User TABLE -------------------END
+
+
+
+
 }
