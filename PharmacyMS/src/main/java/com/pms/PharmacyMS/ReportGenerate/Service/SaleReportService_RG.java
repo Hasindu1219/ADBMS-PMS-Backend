@@ -50,6 +50,9 @@ public class SaleReportService_RG
     return sales;
     }
 
+    public List<Object[]> getProfitReport() {
+        return saleDetailsRepo.getViewProfitReport();
+    }
 
 
 }

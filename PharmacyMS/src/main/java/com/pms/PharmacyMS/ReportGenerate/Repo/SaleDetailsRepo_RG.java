@@ -38,5 +38,8 @@ public interface SaleDetailsRepo_RG extends JpaRepository<SaleDetails_RG, Intege
 
     @Query(value="select * from YearlySales" ,nativeQuery = true)
     List<Object[]> getThisYearSales();
+
+    @Query(value = "SELECT * FROM View_Profit_Report", nativeQuery = true)
+    List<Object[]> getViewProfitReport();
 }
 
