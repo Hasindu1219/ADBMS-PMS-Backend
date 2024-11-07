@@ -207,6 +207,14 @@ public class UserService {
         return userRepo.getAllActiveUsers();
     }
 
+    //getAllDisabledUsers
+    public List<UserEntity> getAllDisabledUsers() {
+        return userRepo.getAllDisabledUsers();
+    }
+
+
+
+
 
     public Optional<UserEntity> getUserById(Integer userId) {
         return Optional.ofNullable(userRepo.getUserById(userId));
@@ -231,6 +239,8 @@ public class UserService {
         userRepo.softDeleteUser(userId);
     }
 
-
+    public void hardDeleteUser(Integer userId) {
+        userRepo.deleteById(userId);
+    }
 
 }
