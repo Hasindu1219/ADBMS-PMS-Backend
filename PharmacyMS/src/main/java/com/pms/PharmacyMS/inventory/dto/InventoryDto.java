@@ -18,5 +18,6 @@ public class InventoryDto {
     private BigDecimal price;
     private int supplierId;
     private int medicineId;
-
+    private Date expiryDate;
+    private int branchId;
 }
