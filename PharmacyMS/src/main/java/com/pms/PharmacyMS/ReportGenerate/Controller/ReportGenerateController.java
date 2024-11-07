@@ -96,4 +96,10 @@ public class ReportGenerateController {
         return saleReportService.getTodaySales(option);
     }
 
+    //    http://localhost:8080/api/report/profitReport
+    @GetMapping("/profitReport")
+    public List<Object[]> getProfitReport() {
+        return saleReportService.getProfitReport();
+    }
+
 }
