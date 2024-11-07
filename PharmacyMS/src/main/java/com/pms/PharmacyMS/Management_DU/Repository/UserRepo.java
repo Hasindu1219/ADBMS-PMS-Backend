@@ -47,4 +47,8 @@ public interface UserRepo extends JpaRepository<UserEntity,Integer>{
 
     @Procedure(procedureName = "GetAllActiveUsers")
     List<UserEntity> getAllActiveUsers();
+
+    //GetAllDisabledUsers
+    @Procedure(procedureName = "GetAllDisabledUsers")
+    List<UserEntity> getAllDisabledUsers();
 }
