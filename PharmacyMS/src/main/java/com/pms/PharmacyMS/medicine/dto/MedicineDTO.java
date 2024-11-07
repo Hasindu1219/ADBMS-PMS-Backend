@@ -15,4 +15,5 @@ public class MedicineDTO {
     private int supplier_id;
     private String unit_type;
     private float dose;
+
 }

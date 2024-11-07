@@ -20,4 +20,5 @@ public class MedicineEntity {
     private String unit_type;
     private float dose;
 
+
 }
