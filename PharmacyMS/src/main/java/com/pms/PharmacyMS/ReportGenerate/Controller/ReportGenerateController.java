@@ -43,7 +43,7 @@ public class ReportGenerateController {
 
 //    http://localhost:8080/api/report/monthlySales?selectedMonth=JANUARY&selectedYear=2024
     @GetMapping("/monthlySales")
-    public List<Object[]> getMonthlySales(@RequestParam Month selectedMonth, Year selectedYear) {
+    public List<Object[]> getMonthlySales(@RequestParam int selectedMonth,@RequestParam int selectedYear) {
         return saleReportService.getMonthlySales(selectedMonth,selectedYear);
     }
 
@@ -69,6 +69,31 @@ public class ReportGenerateController {
     @GetMapping("/purchaseHistory")
     public List<Object[]> getPurchaseHistory(@RequestParam("branchId") int branchId,@RequestParam("month") int month,@RequestParam("year") int year) {
         return inventoryService.getPurchaseHistory(branchId,month,year);
+    }
+
+    //    http://localhost:8080/api/report/dailySales?selectedDate=2024-11-01
+    @GetMapping("/dailySalesAllBranch")
+    public List<Object[]> getDailySales(@RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") String selectedDate) {
+        Date date = null;
+        try {
+            date = new SimpleDateFormat("yyyy-MM-dd").parse(selectedDate);
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
+        }
+        return saleReportService.getDailySales(date);
+    }
+
+    //    http://localhost:8080/api/report/dailySales?selectedYear=2024
+    @GetMapping("/yearlySales")
+    public List<Object[]> getYearlySales(@RequestParam("selectedYear") String selectedYear) {
+        return saleReportService.getYearlySales(selectedYear);
+    }
+
+    //    http://localhost:8080/api/report/getTodaySales?option=
+    @GetMapping("/getTodaySales")
+    public List<Object[]> getTodaySales(@RequestParam("option") String option)
+    {
+        return saleReportService.getTodaySales(option);
     }
 
 }
