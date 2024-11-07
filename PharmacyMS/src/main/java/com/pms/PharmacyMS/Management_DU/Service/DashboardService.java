@@ -3,6 +3,7 @@ package com.pms.PharmacyMS.Management_DU.Service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 import org.springframework.jdbc.core.JdbcTemplate;
 
@@ -29,12 +30,24 @@ public class DashboardService {
 
     public Map<String, Object> getYesterdayIncomeAndSales() {
         String query = "SELECT * FROM daily_sales_summary WHERE summary_date = CURDATE() - INTERVAL 1 DAY";
-        return jdbcTemplate.queryForMap(query);
+        try {
+            return jdbcTemplate.queryForMap(query);
+
+        }catch (DataAccessException e){
+            e.printStackTrace();
+            return Collections.emptyMap();
+        }
     }
 
     public List<Map<String, Object>> getMonthlyIncomeAndSales() {
         String query = "SELECT * FROM daily_sales_summary WHERE MONTH(summary_date) = MONTH(CURDATE()) AND YEAR(summary_date) = YEAR(CURDATE())";
-        return jdbcTemplate.queryForList(query);
+        try {
+            return jdbcTemplate.queryForList(query);
+
+        }catch (EmptyResultDataAccessException e){
+            e.printStackTrace();
+            return Collections.emptyList();
+        }
     }
 
     public List<Map<String, Object>> getGoodsNearExpiration() {
