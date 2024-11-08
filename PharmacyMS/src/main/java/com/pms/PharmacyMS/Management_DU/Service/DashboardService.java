@@ -19,7 +19,7 @@ public class DashboardService {
     private JdbcTemplate jdbcTemplate;
 
     public Integer getTodaySalesCount() {
-        String query = "SELECT COUNT(sold_date) AS todays_sales_until_now FROM sale WHERE sold_date = CURDATE()";
+        String query = "SELECT count(sold_date) AS todays_sales_until_now FROM sale WHERE DATE(sold_date) = CURDATE();";
         return jdbcTemplate.queryForObject(query, Integer.class);
     }
 
