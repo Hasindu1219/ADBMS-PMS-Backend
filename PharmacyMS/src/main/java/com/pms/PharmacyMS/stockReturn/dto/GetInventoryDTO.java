@@ -18,5 +18,6 @@ public class GetInventoryDTO {
     private String medicine_id;
     private String supplier_id;
     private String branch_id;
+    private String medicine_name;
 
 }

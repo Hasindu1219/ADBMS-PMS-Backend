@@ -4,6 +4,7 @@ package com.pms.PharmacyMS.stockReturn.service;
 import com.pms.PharmacyMS.stockReturn.dto.GetInventoryDTO;
 import com.pms.PharmacyMS.stockReturn.entity.GetInventoryEntity;
 import com.pms.PharmacyMS.stockReturn.repository.GetInventoryRepo;
+import com.pms.PharmacyMS.stockReturn.repository.UpdateInventoryRepo;
 import jakarta.transaction.Transactional;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
@@ -13,6 +14,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -25,6 +27,9 @@ public class GetInventoryService {
     private GetInventoryRepo getInventoryRepo;
 
     @Autowired
+    private UpdateInventoryRepo updateInventoryRepo;
+
+    @Autowired
     private ModelMapper modelMapper;
 
     public List<GetInventoryDTO> sp_getMedicinesNearToExpiration(String input_branch_id){
@@ -32,6 +37,13 @@ public class GetInventoryService {
         return modelMapper.map(result,new TypeToken<ArrayList<GetInventoryDTO>>(){}.getType());
     }
 
+    public void addToStockArchive(int stockQuantity, int medicineId, int branchId, String expiryDate) {
+        // Convert String expiryDate to Timestamp
+        Timestamp timestamp = Timestamp.valueOf(expiryDate);
+
+        // Call the stored procedure via the repository
+        updateInventoryRepo.sp_AddToStockArchive(stockQuantity, medicineId, branchId, timestamp);
+    }
 
 
 }
